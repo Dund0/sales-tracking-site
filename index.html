@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f6f7fb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Tracking App">
+  <title>Tracking App</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div><h1 id="page-title">Dashboard</h1></div>
+    <button class="add-button" id="add-sale" aria-label="Add sale">＋</button>
+  </header>
+  <main>
+    <section class="page active" id="dashboard-page">
+      <div class="metrics">
+        <article class="metric"><span class="metric-icon blue">＄</span><p>Total Revenue</p><strong id="total-revenue">$0.00</strong></article>
+        <article class="metric"><span class="metric-icon green">↗</span><p>Total Profit</p><strong id="total-profit">$0.00</strong></article>
+      </div>
+      <div class="section-heading"><h2>Recent Sales</h2><span id="sale-count">0 items</span></div>
+      <div class="sale-list" id="recent-list"></div>
+    </section>
+    <section class="page" id="items-page">
+      <div class="section-heading"><h2>All Sales</h2><span id="items-count">0 items</span></div>
+      <div class="sale-list" id="items-list"></div>
+    </section>
+    <section class="page" id="settings-page">
+      <article class="settings-card">
+        <h2>Data Backup</h2>
+        <p>Save a copy of your sales or restore from a backup exported by this site or the iPhone app.</p>
+        <div class="button-row"><button class="secondary-button" id="export-data">↥ &nbsp;Export Data</button><button class="secondary-button" id="import-data">↧ &nbsp;Import Data</button></div>
+        <input id="file-input" type="file" accept="application/json,.json" hidden>
+        <p class="hint">Importing adds records to your current list. It does not replace or deduplicate them.</p>
+      </article>
+      <article class="settings-card stats-card"><h2>Your Data</h2><div><span>Total Items</span><strong id="settings-count">0</strong></div><div><span>Total Revenue</span><strong id="settings-revenue">$0.00</strong></div><div><span>Total Profit</span><strong id="settings-profit">$0.00</strong></div></article>
+      <article class="settings-card danger-card"><h2>Clear Data</h2><p>Remove every saved sale from this browser on this device. This cannot be undone.</p><button class="danger-button" id="clear-data">Clear All Data</button></article>
+      <p class="storage-note">Your sales are saved in this browser on this device. Export backups regularly, especially before clearing browser data or changing phones.</p>
+    </section>
+  </main>
+  <nav class="tabbar" aria-label="Main navigation">
+    <button class="tab active" data-page="dashboard"><span>▥</span>Dashboard</button>
+    <button class="tab" data-page="items"><span>☷</span>Items</button>
+    <button class="tab" data-page="settings"><span>⚙</span>Settings</button>
+  </nav>
+  <dialog id="sale-dialog">
+    <form id="sale-form">
+      <div class="dialog-head"><div><span class="eyebrow">SALE DETAILS</span><h2 id="dialog-title">New Sale</h2></div><button type="button" class="close-button" id="close-dialog" aria-label="Close">×</button></div>
+      <label>Item name<input id="item-name" type="text" placeholder="What did you sell?" autocomplete="off"></label>
+      <label>Date sold<input id="date-sold" type="date" required></label>
+      <div class="form-grid"><label>Purchase price<div class="money-input"><span>$</span><input id="amount-bought" inputmode="decimal" placeholder="0.00" required></div></label><label>Sale price<div class="money-input"><span>$</span><input id="amount-sold" inputmode="decimal" placeholder="0.00" required></div></label></div>
+      <label class="ship-toggle"><span><strong>Shipped</strong><small>Mark when the item has shipped</small></span><input id="shipped" type="checkbox"><i></i></label>
+      <p class="error" id="form-error" role="alert"></p>
+      <button class="primary-button" type="submit" id="save-sale">Add Sale</button>
+      <button class="delete-button" type="button" id="delete-sale" hidden>Delete Sale</button>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
