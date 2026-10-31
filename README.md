@@ -8,6 +8,8 @@ Upload the files in this folder to a static host such as GitHub Pages, Cloudflar
 
 On iPhone, open the hosted URL in Safari, tap Share, then **Add to Home Screen**. The site can also be opened directly in a browser.
 
+The site includes an iPhone Home Screen icon (`apple-touch-icon.png`) and an SVG browser/manifest icon. After deploying an icon change, remove an existing Home Screen shortcut and add it again to refresh the cached icon.
+
 ## Move records from the iPhone app
 
 If the native app is still accessible, use its **Settings → Export Data** to save a JSON backup. In the hosted site, open **Settings → Import Data** and select that file. The web version reads the app's default JSON date format and exports the same format. Importing appends records, so avoid importing the same backup twice.
